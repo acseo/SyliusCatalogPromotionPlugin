@@ -60,7 +60,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
         return $this->promotion;
     }
 
-    public function setPromotion(Promotion $promotion): void
+    public function setPromotion(?Promotion $promotion): void
     {
         $this->promotion = $promotion;
     }

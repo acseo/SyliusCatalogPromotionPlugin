@@ -200,7 +200,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     public function removeAction(PromotionAction $action): void
     {
         $action->setPromotion(null);
-        $this->actions->removeElement(actions);
+        $this->actions->removeElement($action);
     }
 
     public function getRules(): Collection
