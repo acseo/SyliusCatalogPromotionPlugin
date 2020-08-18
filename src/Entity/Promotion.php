@@ -34,7 +34,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
     /** @var string */
     private $name;
 
-    /** @var string */
+    /** @var string|null */
     private $description;
 
     /** @var int */
@@ -76,7 +76,7 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         return $this->code;
     }
 
-    public function setCode(string $code): void
+    public function setCode(?string $code): void
     {
         $this->code = $code;
     }
@@ -91,12 +91,12 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         $this->name = $name;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }

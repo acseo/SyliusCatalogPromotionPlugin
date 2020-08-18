@@ -4,7 +4,13 @@ app:
         catalog_promotions: Catalog promotions
 
 sylius:
+    menu:
+        admin:
+            main:
+                marketing:
+                    catalog_promotions: Catalog promotions
     form:
+        options: Options
         promotion:
             actions: Actions
             add_action: Add action
