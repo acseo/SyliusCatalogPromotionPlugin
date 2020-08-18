@@ -27,7 +27,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /** @var array|null */
     private $configuration;
 
-    /** @var PromotionInterface */
+    /** @var Promotion */
     private $promotion;
 
     public function getId(): int
@@ -60,7 +60,7 @@ class PromotionAction implements ConfigurablePromotionElementInterface
         return $this->promotion;
     }
 
-    public function setPromotion(PromotionInterface $promotion): void
+    public function setPromotion(Promotion $promotion): void
     {
         $this->promotion = $promotion;
     }

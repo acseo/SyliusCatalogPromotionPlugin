@@ -1,8 +1,8 @@
 app:
     ui:
-        edit_catalog_promotion: Modifier une promotion
+        edit_catalog_promotion: Modifier une promotion (sans code promo)
+        new_catalog_promotion: Ajouter une promotion (sans code promo)
         catalog_promotions: Promotions (sans code promo)
-
 
 sylius:
     menu:
