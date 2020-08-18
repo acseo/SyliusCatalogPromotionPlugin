@@ -20,33 +20,50 @@ use Sylius\Component\Resource\Model\CodeAwareInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Channel\Model\ChannelInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class Promotion implements ResourceInterface, CodeAwareInterface
 {
     use TimestampableTrait;
 
-    /** @var int */
+    /** @var int|null */
     private $id;
 
-    /** @var string */
+    /**
+     * @var string|null
+     *
+     * @Assert\NotBlank()
+     */
     private $code;
 
-    /** @var string */
+    /**
+     * @var string|null
+     *
+     * @Assert\NotBlank()
+     */
     private $name;
 
-    /** @var string */
+    /** @var string|null */
     private $description;
 
     /** @var int */
     private $priority = 0;
 
-    /** @var bool */
+    /** @var bool|null */
     private $exclusive;
 
-    /** @var \DateTime */
+    /**
+     * @var ?\DateTimeInterface
+     *
+     * @Assert\NotBlank()
+     */
     private $startsAt;
 
-    /** @var \DateTime */
+    /**
+     * @var ?\DateTimeInterface
+     *
+     * @Assert\NotBlank()
+     */
     private $endsAt;
 
     /** @var Collection|ChannelPricingInterface[] */
@@ -66,37 +83,37 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         $this->actions = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->code;
     }
 
-    public function setCode(string $code): void
+    public function setCode(?string $code): void
     {
         $this->code = $code;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
@@ -106,37 +123,37 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         return $this->priority;
     }
 
-    public function setPriority(int $priority): void
+    public function setPriority(?int $priority): void
     {
         $this->priority = $priority;
     }
 
-    public function isExclusive(): bool
+    public function isExclusive(): ?bool
     {
         return $this->exclusive;
     }
 
-    public function setExclusive(bool $exclusive): void
+    public function setExclusive(?bool $exclusive): void
     {
         $this->exclusive = $exclusive;
     }
 
-    public function getStartsAt(): \DateTime
+    public function getStartsAt(): ?\DateTimeInterface
     {
         return $this->startsAt;
     }
 
-    public function setStartsAt(\DateTime $startsAt): void
+    public function setStartsAt(?\DateTimeInterface $startsAt): void
     {
         $this->startsAt = $startsAt;
     }
 
-    public function getEndsAt(): \DateTime
+    public function getEndsAt(): ?\DateTimeInterface
     {
         return $this->endsAt;
     }
 
-    public function setEndsAt(\DateTime $endsAt): void
+    public function setEndsAt(?\DateTimeInterface $endsAt): void
     {
         $this->endsAt = $endsAt;
     }
@@ -174,26 +191,16 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         return $this->actions;
     }
 
-    public function addAction(PromotionAction $action): self
+    public function addAction(PromotionAction $action): void
     {
-        if (!$this->actions->contains($action)) {
-            $this->actions[] = $action;
-            $action->setPromotion($this);
-        }
-
-        return $this;
+        $this->actions->add($action);
+        $action->setPromotion($this);
     }
 
-    public function removeIngredient(PromotionAction $action): self
+    public function removeAction(PromotionAction $action): void
     {
-        if ($this->actions->contains($action)) {
-            $this->actions->removeElement($action);
-            if ($action->getPromotion() === $this) {
-                $action->setPromotion(null);
-            }
-        }
-
-        return $this;
+        $action->setPromotion(null);
+        $this->actions->removeElement($action);
     }
 
     public function getRules(): Collection
@@ -201,13 +208,13 @@ class Promotion implements ResourceInterface, CodeAwareInterface
         return $this->rules;
     }
 
-    public function addRule(PromotionRule $rule)
+    public function addRule(PromotionRule $rule): void
     {
         $this->rules->add($rule);
         $rule->setPromotion($this);
     }
 
-    public function removeRule(PromotionRule $rule)
+    public function removeRule(PromotionRule $rule): void
     {
         $rule->setPromotion(null);
         $this->rules->removeElement($rule);

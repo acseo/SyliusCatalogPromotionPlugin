@@ -22,6 +22,7 @@ class AdminMenuListener
     {
         $event->getMenu()->getChild('marketing')
             ->addChild('catalog_promotions', ['route' => 'app_admin_catalog_promotion_index'])
-            ->setLabel('sylius.ui.catalog_promotions');
+            ->setLabel('sylius.menu.admin.main.marketing.catalog_promotions')
+            ->setLabelAttribute('icon', 'in cart');
     }
 }

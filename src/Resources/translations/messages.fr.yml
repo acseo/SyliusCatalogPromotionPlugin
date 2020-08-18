@@ -1,10 +1,17 @@
 app:
     ui:
-        edit_catalog_promotion: Modifier une promotion
-        catalog_promotions: Catalogue promotions
+        edit_catalog_promotion: Modifier une promotion (sans code promo)
+        new_catalog_promotion: Ajouter une promotion (sans code promo)
+        catalog_promotions: Promotions (sans code promo)
 
 sylius:
+    menu:
+        admin:
+            main:
+                marketing:
+                    catalog_promotions: Promotions (sans code promo)
     form:
+        options: Options
         promotion:
             actions: Actions
             add_action: Ajouter une action

@@ -32,6 +32,7 @@ final class PromotionType extends AbstractResourceType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'sylius.form.promotion.name',
+                'required' => true,
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'sylius.form.promotion.description',
@@ -44,13 +45,13 @@ final class PromotionType extends AbstractResourceType
                 'label' => 'sylius.form.promotion.starts_at',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
-                'required' => false,
+                'required' => true,
             ])
             ->add('endsAt', DateTimeType::class, [
                 'label' => 'sylius.form.promotion.ends_at',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
-                'required' => false,
+                'required' => true,
             ])
             ->add('priority', IntegerType::class, [
                 'label' => 'sylius.form.promotion.priority',
