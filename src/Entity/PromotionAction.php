@@ -24,8 +24,8 @@ class PromotionAction implements ConfigurablePromotionElementInterface
     /** @var string|null */
     private $type;
 
-    /** @var array|null */
-    private $configuration;
+    /** @var array */
+    private $configuration = [];
 
     /** @var Promotion */
     private $promotion;
@@ -45,12 +45,12 @@ class PromotionAction implements ConfigurablePromotionElementInterface
         $this->type = $type;
     }
 
-    public function getConfiguration(): ?array
+    public function getConfiguration(): array
     {
         return $this->configuration;
     }
 
-    public function setConfiguration(?array $configuration): void
+    public function setConfiguration(array $configuration): void
     {
         $this->configuration = $configuration;
     }
